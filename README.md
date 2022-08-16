@@ -29,13 +29,14 @@
 ## Installation
 
 ```bash
-$ npm install
+$ npm install or yarn
 ```
 
 ## Running the app
 
 ```bash
 # development
+Create .env file
 $ npm run start
 
 # watch mode
