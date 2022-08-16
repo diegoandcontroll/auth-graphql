@@ -37,7 +37,7 @@ $ npm install or yarn
 ```bash
 # development
 Create .env file
-$ npm run start
+$ docker-compose up --build
 
 # watch mode
 $ npm run start:dev
