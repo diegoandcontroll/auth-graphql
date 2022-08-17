@@ -8,6 +8,7 @@ import { AppService } from './app.service';
 import { DbModule } from './db/db.module';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
+import { TokenModule } from './token/token.module';
 
 @Module({
   imports: [
@@ -17,9 +18,11 @@ import { AuthModule } from './auth/auth.module';
       driver: ApolloDriver,
       debug: false,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      context: ({ req }) => ({ req }),
     }),
     UserModule,
     AuthModule,
+    TokenModule,
   ],
   controllers: [AppController],
   providers: [AppService],
