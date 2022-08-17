@@ -9,6 +9,10 @@ import { DbModule } from './db/db.module';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { TokenModule } from './token/token.module';
+import {
+  ApolloServerPluginUsageReporting,
+  ApolloServerPluginLandingPageLocalDefault,
+} from 'apollo-server-core';
 
 @Module({
   imports: [
@@ -16,13 +20,16 @@ import { TokenModule } from './token/token.module';
     ConfigModule.forRoot(),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      debug: false,
-      cors: true,
-      sortSchema: false,
-      transformAutoSchemaFile: true,
+      csrfPrevention: true,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       context: ({ req }) => ({ req }),
-      persistedQueries: false,
+      cache: 'bounded',
+      plugins: [
+        ApolloServerPluginUsageReporting({
+          fieldLevelInstrumentation: 0.5,
+        }),
+        ApolloServerPluginLandingPageLocalDefault({ embed: true }),
+      ],
     }),
     UserModule,
     AuthModule,
