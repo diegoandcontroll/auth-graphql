@@ -10,8 +10,8 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { TokenModule } from './token/token.module';
 import {
-  ApolloServerPluginUsageReporting,
   ApolloServerPluginLandingPageLocalDefault,
+  ApolloServerPluginUsageReportingDisabled,
 } from 'apollo-server-core';
 
 @Module({
@@ -25,9 +25,7 @@ import {
       context: ({ req }) => ({ req }),
       cache: 'bounded',
       plugins: [
-        ApolloServerPluginUsageReporting({
-          fieldLevelInstrumentation: 0.5,
-        }),
+        ApolloServerPluginUsageReportingDisabled(),
         ApolloServerPluginLandingPageLocalDefault({ embed: true }),
       ],
     }),
