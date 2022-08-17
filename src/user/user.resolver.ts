@@ -11,11 +11,11 @@ import { UserService } from './user.service';
 export class UserResolver {
   constructor(private readonly userService: UserService) {}
 
-  @Query(() => [User])
-  async users(): Promise<User[]> {
-    const users = await this.userService.find();
-    return users;
-  }
+  // @Query(() => [User])
+  // async users(): Promise<User[]> {
+  //   const users = await this.userService.find();
+  //   return users;
+  // }
 
   @UseGuards(GqlAuthGuard)
   @Query(() => User)
@@ -24,6 +24,7 @@ export class UserResolver {
     return user;
   }
 
+  @UseGuards(GqlAuthGuard)
   @Query(() => User)
   async userbyEmail(@Args('email') email: string): Promise<User> {
     const user = await this.userService.findUserByEmail(email);
@@ -36,6 +37,7 @@ export class UserResolver {
     return user;
   }
 
+  @UseGuards(GqlAuthGuard)
   @Mutation(() => User)
   async updateUser(
     @Args('id') id: string,
@@ -45,6 +47,7 @@ export class UserResolver {
     return user;
   }
 
+  @UseGuards(GqlAuthGuard)
   @Mutation(() => Boolean)
   async DeleteUser(@Args('id') id: string): Promise<boolean> {
     const deletedUser = await this.userService.deleteUser(id);
