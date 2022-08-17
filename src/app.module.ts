@@ -17,9 +17,11 @@ import { TokenModule } from './token/token.module';
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       debug: false,
+      cors: true,
+      sortSchema: false,
+      transformAutoSchemaFile: true,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       context: ({ req }) => ({ req }),
-      cache: 'bounded',
       persistedQueries: false,
     }),
     UserModule,
