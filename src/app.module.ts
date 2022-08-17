@@ -28,6 +28,7 @@ import {
         ApolloServerPluginUsageReportingDisabled(),
         ApolloServerPluginLandingPageLocalDefault({ embed: true }),
       ],
+      introspection: true,
     }),
     UserModule,
     AuthModule,
