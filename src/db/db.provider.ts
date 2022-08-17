@@ -13,6 +13,10 @@ export const databaseProviders = [
         database: process.env.POSTGRES_DB,
         entities: [__dirname + '/../**/*.entity{.ts,.js}'],
         synchronize: false,
+        url: process.env.DATABASE_URL,
+        ssl: {
+          rejectUnauthorized: false,
+        },
       });
 
       return dataSource.initialize();
