@@ -19,6 +19,8 @@ import { TokenModule } from './token/token.module';
       debug: false,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       context: ({ req }) => ({ req }),
+      cache: 'bounded',
+      persistedQueries: false,
     }),
     UserModule,
     AuthModule,
